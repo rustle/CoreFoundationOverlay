@@ -1,8 +1,9 @@
-## Build generated
 build/
 DerivedData/
-
-## Various settings
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -12,14 +13,9 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-
-## Other
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-.DS_Store
-
-## Obj-C/Swift specific
 *.hmap
 *.ipa
 *.dSYM.zip
