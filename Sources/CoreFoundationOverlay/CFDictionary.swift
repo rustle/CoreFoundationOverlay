@@ -24,7 +24,12 @@ public extension CFDictionary {
             }
             applier(Unmanaged<CFTypeRef>.fromOpaque(key).takeUnretainedValue(), Unmanaged<CFTypeRef>.fromOpaque(value).takeUnretainedValue())
         }
+#if swift(>=4.1)
+        keys.deallocate()
+        values.deallocate()
+#else
         keys.deallocate(capacity: count)
         values.deallocate(capacity: count)
+#endif
     }
 }

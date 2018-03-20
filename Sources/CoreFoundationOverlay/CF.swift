@@ -20,7 +20,11 @@ fileprivate func _apply(collection: CFTypeRef,
         let value = Unmanaged<CFTypeRef>.fromOpaque(pointer).takeUnretainedValue()
         try applier(value)
     }
+#if swift(>=4.1)
+    values.deallocate()
+#else
     values.deallocate(capacity: count)
+#endif
 }
 
 public extension CFArray {
