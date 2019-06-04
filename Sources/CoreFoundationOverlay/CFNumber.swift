@@ -179,6 +179,8 @@ extension CFNumber : BooleanProviding {
             return (try? self.integerValue())! != 0
         case .cgFloatType:
             return (try? self.cgFloatValue())! != 0
+        @unknown default:
+            return false
         }
     }
 }
