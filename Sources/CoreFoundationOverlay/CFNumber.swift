@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 public protocol BooleanProviding {
     var boolValue: Bool { get }
