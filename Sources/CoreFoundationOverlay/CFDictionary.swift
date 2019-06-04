@@ -7,10 +7,10 @@
 import Foundation
 
 public extension CFDictionary {
-    public static var typeID: CFTypeID {
+    static var typeID: CFTypeID {
         return CFDictionaryGetTypeID()
     }
-    public func apply(_ applier: (CFTypeRef, CFTypeRef) -> Void) {
+    func apply(_ applier: (CFTypeRef, CFTypeRef) -> Void) {
         let count = Int(CFDictionaryGetCount(self))
         let keys = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: count)
         let values = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: count)

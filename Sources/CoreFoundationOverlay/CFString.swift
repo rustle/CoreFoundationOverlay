@@ -7,7 +7,7 @@
 import Foundation
 
 public extension CFString {
-    public static var typeID: CFTypeID {
+    static var typeID: CFTypeID {
         return CFStringGetTypeID()
     }
 }

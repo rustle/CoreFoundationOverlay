@@ -28,10 +28,10 @@ fileprivate func _apply(collection: CFTypeRef,
 }
 
 public extension CFArray {
-    public static var typeID: CFTypeID {
+    static var typeID: CFTypeID {
         return CFArrayGetTypeID()
     }
-    public func apply(_ applier: (CFTypeRef) throws -> Void) rethrows {
+    func apply(_ applier: (CFTypeRef) throws -> Void) rethrows {
         try _apply(collection: self, getCount: {
             return CFArrayGetCount(self)
         }, getValues: { values, count in
@@ -41,10 +41,10 @@ public extension CFArray {
 }
 
 public extension CFSet {
-    public static var typeID: CFTypeID {
+    static var typeID: CFTypeID {
         return CFSetGetTypeID()
     }
-    public func apply(_ applier: (CFTypeRef) throws -> Void) rethrows {
+    func apply(_ applier: (CFTypeRef) throws -> Void) rethrows {
         try _apply(collection: self, getCount: {
             return CFSetGetCount(self)
         }, getValues: { values, count in
