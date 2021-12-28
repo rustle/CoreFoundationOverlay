@@ -1,31 +1,40 @@
 //
 //  CFRunLoop.swift
 //
-//  Copyright © 2018 Doug Russell. All rights reserved.
+//  Copyright © 2018-2021 Doug Russell. All rights reserved.
 //
 
-import Foundation
+import CoreFoundation
 
 public extension CFRunLoop {
-    public static var typeID: CFTypeID {
-        return CFRunLoopGetTypeID()
+    static var typeID: CFTypeID {
+        CFRunLoopGetTypeID()
     }
-    public static var main: CFRunLoop {
-        return CFRunLoopGetMain()
+    static var main: CFRunLoop {
+        CFRunLoopGetMain()
     }
-    public static var current: CFRunLoop {
-        return CFRunLoopGetCurrent()
+    static var current: CFRunLoop {
+        CFRunLoopGetCurrent()
     }
-    public static func run() {
+    static func run() {
         CFRunLoopRun()
     }
-    public func add(source: CFRunLoopSource, mode: CFRunLoopMode = .defaultMode) {
-        CFRunLoopAddSource(self, source, mode)
+    func add(source: CFRunLoopSource,
+             mode: CFRunLoopMode = .defaultMode) {
+        CFRunLoopAddSource(self,
+                           source,
+                           mode)
     }
-    public func remove(source: CFRunLoopSource, mode: CFRunLoopMode = .defaultMode) {
-        CFRunLoopRemoveSource(self, source, mode)
+    func remove(source: CFRunLoopSource,
+                mode: CFRunLoopMode = .defaultMode) {
+        CFRunLoopRemoveSource(self,
+                              source,
+                              mode)
     }
-    public func perform(mode: CFRunLoopMode = .defaultMode, block: @escaping () -> Void) {
-        CFRunLoopPerformBlock(self, mode.rawValue, block)
+    func perform(mode: CFRunLoopMode = .defaultMode,
+                 block: @escaping () -> Void) {
+        CFRunLoopPerformBlock(self,
+                              mode.rawValue,
+                              block)
     }
 }

@@ -1,20 +1,22 @@
 //
 //  CFDictionary.swift
 //
-//  Copyright © 2018 Doug Russell. All rights reserved.
+//  Copyright © 2018-2021 Doug Russell. All rights reserved.
 //
 
-import Foundation
+import CoreFoundation
 
 public extension CFDictionary {
-    public static var typeID: CFTypeID {
-        return CFDictionaryGetTypeID()
+    static var typeID: CFTypeID {
+        CFDictionaryGetTypeID()
     }
-    public func apply(_ applier: (CFTypeRef, CFTypeRef) -> Void) {
-        let count = Int(CFDictionaryGetCount(self))
+    func apply(_ applier: (CFTypeRef, CFTypeRef) -> Void) {
+        let count = CFDictionaryGetCount(self)
         let keys = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: count)
         let values = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: count)
-        CFDictionaryGetKeysAndValues(self, keys, values)
+        CFDictionaryGetKeysAndValues(self,
+                                     keys,
+                                     values)
         for i in 0..<count {
             guard let key = keys[i] else {
                 break
@@ -24,12 +26,7 @@ public extension CFDictionary {
             }
             applier(Unmanaged<CFTypeRef>.fromOpaque(key).takeUnretainedValue(), Unmanaged<CFTypeRef>.fromOpaque(value).takeUnretainedValue())
         }
-#if swift(>=4.1)
         keys.deallocate()
         values.deallocate()
-#else
-        keys.deallocate(capacity: count)
-        values.deallocate(capacity: count)
-#endif
     }
 }

@@ -1,7 +1,7 @@
 //
 //  CoreFoundationOverlayTests.swift
 //
-//  Copyright © 2018 Doug Russell. All rights reserved.
+//  Copyright © 2018-2021 Doug Russell. All rights reserved.
 //
 
 import XCTest
